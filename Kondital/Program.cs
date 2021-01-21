@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Kondital
 {
@@ -10,11 +11,11 @@ namespace Kondital
 
             // Get user inputs.
             Console.Write("Din vægt (kg): ");
-            var weight = GetUserInputDouble();
+            var weight = UserInput.GetDouble();
             Console.Write("Din hvilepuls (bpm): ");
-            var minPulse = GetUserInputDouble();
+            var minPulse = UserInput.GetDouble();
             Console.Write("Din maks. puls (bpm): ");
-            var maxPulse = GetUserInputDouble();
+            var maxPulse = UserInput.GetDouble();
 
             // Calculate and print values representing user's physical health.
             var kondital = Kondital.GetKondital(minPulse, maxPulse);
@@ -23,24 +24,6 @@ namespace Kondital
             Console.WriteLine("\nDINE VÆRDIER:");
             Console.WriteLine("Kondital: " + kondital);
             Console.WriteLine("VO2 Maks. (maksimal iltoptagelse): " + vO2Max);
-        }
-
-        /// <summary>
-        /// Get double value from user. Retry until a valid value has been entered.
-        /// </summary>
-        /// <returns>User input as double.</returns>
-        static double GetUserInputDouble()
-        {
-            double input;
-            do
-            {
-                if (Double.TryParse(Console.ReadLine().Replace('.', ','), out input))
-                    break;
-                else
-                    Console.Write("Ugyldig værdi, prøv igen (se evt. README): ");
-            } while (true);
-
-            return input;
         }
     }
 }
