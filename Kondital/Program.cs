@@ -10,6 +10,10 @@ namespace Kondital
             Console.WriteLine("### Beregn dit kondital ###\n");
 
             // Get user inputs.
+            Console.Write("Dit køn (m/k): ");
+            var gender = UserInput.GetChar(new List<char>() { 'm', 'k' });
+            Console.Write("Din alder (år): ");
+            var age = UserInput.GetDouble();
             Console.Write("Din vægt (kg): ");
             var weight = UserInput.GetDouble();
             Console.Write("Din hvilepuls (bpm): ");
