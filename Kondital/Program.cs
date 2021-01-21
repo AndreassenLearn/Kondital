@@ -15,6 +15,10 @@ namespace Kondital
             var minPulse = GetUserInputDouble();
             Console.Write("Din max. puls (bpm): ");
             var maxPulse = GetUserInputDouble();
+
+            // Calculate and print values representing user's physical health.
+            Console.WriteLine("\nDINE VÆRDIER:");
+            Console.WriteLine("Kondital: " + Kondital.GetKondital(minPulse, maxPulse));
         }
 
         /// <summary>
