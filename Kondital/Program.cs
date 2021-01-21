@@ -24,6 +24,7 @@ namespace Kondital
             // Calculate and print values representing user's physical health.
             var kondital = Kondital.GetKondital(minPulse, maxPulse);
             var vO2Max = Kondital.GetVO2Max(kondital, weight);
+            var healthCondition = Kondital.GetPhysicalHealthCondition((int)Math.Round(kondital), gender != 'm', (int)age);
 
             Console.WriteLine("\nDINE VÆRDIER:");
             Console.WriteLine("Kondital: " + kondital);
