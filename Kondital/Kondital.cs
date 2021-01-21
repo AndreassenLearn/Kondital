@@ -16,15 +16,24 @@ namespace Kondital
             Good,
             Best
         }
+
+        static public readonly Dictionary<HealthCondition, string> healthConditionString = new Dictionary<HealthCondition, string>() {
+            { HealthCondition.None, "Ikke definerbar" },
+            { HealthCondition.Badest, "Meget dårlig" },
+            { HealthCondition.Bad, "Dårlig" },
+            { HealthCondition.Average, "Middel" },
+            { HealthCondition.Good, "God" },
+            { HealthCondition.Best, "Meget god" }
+        };
         
-        static private readonly Dictionary<Tuple<int, int>, List<Tuple<int, int>>> femaleHealthCondition = new Dictionary<Tuple<int, int>, List<Tuple<int, int>>>()
+        static private readonly SortedDictionary<Tuple<int, int>, List<Tuple<int, int>>> femaleHealthCondition = new SortedDictionary<Tuple<int, int>, List<Tuple<int, int>>>()
         {
             { new Tuple<int, int>(20, 29), new List<Tuple<int, int>>() { new Tuple<int, int>(Int32.MinValue, 28), new Tuple<int, int>(29, 34), new Tuple<int, int>(35, 43), new Tuple<int, int>(44, 48), new Tuple<int, int>(49, Int32.MaxValue) } },
             { new Tuple<int, int>(30, 39), new List<Tuple<int, int>>() { new Tuple<int, int>(Int32.MinValue, 27), new Tuple<int, int>(28, 33), new Tuple<int, int>(34, 41), new Tuple<int, int>(42, 47), new Tuple<int, int>(48, Int32.MaxValue) } },
             { new Tuple<int, int>(40, 49), new List<Tuple<int, int>>() { new Tuple<int, int>(Int32.MinValue, 25), new Tuple<int, int>(26, 31), new Tuple<int, int>(32, 40), new Tuple<int, int>(41, 45), new Tuple<int, int>(46, Int32.MaxValue) } },
             { new Tuple<int, int>(50, 65), new List<Tuple<int, int>>() { new Tuple<int, int>(Int32.MinValue, 21), new Tuple<int, int>(22, 28), new Tuple<int, int>(29, 36), new Tuple<int, int>(37, 41), new Tuple<int, int>(42, Int32.MaxValue) } }
         };
-        static private readonly Dictionary<Tuple<int, int>, List<Tuple<int, int>>> maleHealthCondition = new Dictionary<Tuple<int, int>, List<Tuple<int, int>>>()
+        static private readonly SortedDictionary<Tuple<int, int>, List<Tuple<int, int>>> maleHealthCondition = new SortedDictionary<Tuple<int, int>, List<Tuple<int, int>>>()
         {
             { new Tuple<int, int>(20, 29), new List<Tuple<int, int>>() { new Tuple<int, int>(Int32.MinValue, 38), new Tuple<int, int>(39, 43), new Tuple<int, int>(44, 51), new Tuple<int, int>(52, 56), new Tuple<int, int>(57, Int32.MaxValue) } },
             { new Tuple<int, int>(30, 39), new List<Tuple<int, int>>() { new Tuple<int, int>(Int32.MinValue, 34), new Tuple<int, int>(35, 39), new Tuple<int, int>(40, 47), new Tuple<int, int>(48, 51), new Tuple<int, int>(52, Int32.MaxValue) } },
@@ -65,7 +74,7 @@ namespace Kondital
         static public HealthCondition GetPhysicalHealthCondition(int kondital, bool gender, int age)
         {
             var healthCondition = HealthCondition.None;
-            var healtConditionDictionaryToIterate = new Dictionary<Tuple<int, int>, List<Tuple<int, int>>>();
+            var healtConditionDictionaryToIterate = new SortedDictionary<Tuple<int, int>, List<Tuple<int, int>>>();
 
             var healthConditionValue = 1;
             var healthConditionValueMax = (int)Enum.GetValues(typeof(HealthCondition)).Cast<HealthCondition>().Max(); // Number of enum values to describe health condition.

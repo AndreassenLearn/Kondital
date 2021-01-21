@@ -29,6 +29,7 @@ namespace Kondital
             Console.WriteLine("\nDINE VÆRDIER:");
             Console.WriteLine("Kondital: " + kondital);
             Console.WriteLine("VO2 Maks. (maksimal iltoptagelse): " + vO2Max);
+            Console.WriteLine("Kondition: " + Kondital.healthConditionString[healthCondition]);
         }
     }
 }
