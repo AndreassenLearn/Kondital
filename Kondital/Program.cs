@@ -18,11 +18,11 @@ namespace Kondital
 
             // Calculate and print values representing user's physical health.
             var kondital = Kondital.GetKondital(minPulse, maxPulse);
-            var vO2Max = Kondital.GetVO2Max(kondital, weight);
+            var oxygenMax = Kondital.GetOxygenMax(kondital, weight);
 
             Console.WriteLine("\nDINE VÆRDIER:");
-            Console.WriteLine("Kondital: " + kondital);
-            Console.WriteLine("VO2 Maks. (maksimal iltoptagelse): " + vO2Max);
+            Console.WriteLine("Kondital: " + Math.Round(kondital) + " ml/kg/min");
+            Console.WriteLine("Maksimal iltoptagelse: " + Math.Round(oxygenMax, 1) + " l/ml");
         }
 
         /// <summary>

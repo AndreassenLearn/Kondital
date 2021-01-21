@@ -11,19 +11,19 @@ namespace Kondital
         /// </summary>
         /// <param name="minPulse">Resting heart rate.</param>
         /// <param name="maxPulse">Maximum heart rate.</param>
-        /// <returns>"Kondital".</returns>
+        /// <returns>"Kondital" in ml/kg/min.</returns>
         static public double GetKondital(double minPulse, double maxPulse)
         {
             return (maxPulse / minPulse) * 15.3;
         }
 
         /// <summary>
-        /// Calculate VO2 Max. based on "kondital" and weight.
+        /// Calculate maximum oxygen uptake based on "kondital" and weight.
         /// </summary>
         /// <param name="kondital">A number calculated from min. and max. heart rate.</param>
         /// <param name="weight">Weight in kilograms.</param>
-        /// <returns>VO2 Max. value.</returns>
-        static public double GetVO2Max(double kondital, double weight)
+        /// <returns>Maximum oxygen uptake in l/ml.</returns>
+        static public double GetOxygenMax(double kondital, double weight)
         {
             return (kondital * weight) * 0.001;
         }
