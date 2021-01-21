@@ -13,12 +13,16 @@ namespace Kondital
             var weight = GetUserInputDouble();
             Console.Write("Din hvilepuls (bpm): ");
             var minPulse = GetUserInputDouble();
-            Console.Write("Din max. puls (bpm): ");
+            Console.Write("Din maks. puls (bpm): ");
             var maxPulse = GetUserInputDouble();
 
             // Calculate and print values representing user's physical health.
+            var kondital = Kondital.GetKondital(minPulse, maxPulse);
+            var vO2Max = Kondital.GetVO2Max(kondital, weight);
+
             Console.WriteLine("\nDINE VÆRDIER:");
-            Console.WriteLine("Kondital: " + Kondital.GetKondital(minPulse, maxPulse));
+            Console.WriteLine("Kondital: " + kondital);
+            Console.WriteLine("VO2 Maks. (maksimal iltoptagelse): " + vO2Max);
         }
 
         /// <summary>
