@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Kondital
 {
@@ -9,38 +10,26 @@ namespace Kondital
             Console.WriteLine("### Beregn dit kondital ###\n");
 
             // Get user inputs.
+            Console.Write("Dit køn (m/k): ");
+            var gender = UserInput.GetChar(new List<char>() { 'm', 'k' });
+            Console.Write("Din alder (år): ");
+            var age = UserInput.GetDouble();
             Console.Write("Din vægt (kg): ");
-            var weight = GetUserInputDouble();
+            var weight = UserInput.GetDouble();
             Console.Write("Din hvilepuls (bpm): ");
-            var minPulse = GetUserInputDouble();
+            var minPulse = UserInput.GetDouble();
             Console.Write("Din maks. puls (bpm): ");
-            var maxPulse = GetUserInputDouble();
+            var maxPulse = UserInput.GetDouble();
 
             // Calculate and print values representing user's physical health.
             var kondital = Kondital.GetKondital(minPulse, maxPulse);
             var oxygenMax = Kondital.GetOxygenMax(kondital, weight);
+            var healthCondition = Kondital.GetPhysicalHealthCondition((int)Math.Round(kondital), gender != 'm', (int)age);
 
             Console.WriteLine("\nDINE VÆRDIER:");
             Console.WriteLine("Kondital: " + Math.Round(kondital) + " ml/kg/min");
             Console.WriteLine("Maksimal iltoptagelse: " + Math.Round(oxygenMax, 1) + " l/ml");
-        }
-
-        /// <summary>
-        /// Get double value from user. Retry until a valid value has been entered.
-        /// </summary>
-        /// <returns>User input as double.</returns>
-        static double GetUserInputDouble()
-        {
-            double input;
-            do
-            {
-                if (Double.TryParse(Console.ReadLine().Replace('.', ','), out input))
-                    break;
-                else
-                    Console.Write("Ugyldig værdi, prøv igen (se evt. README): ");
-            } while (true);
-
-            return input;
+            Console.WriteLine("Kondition: " + Kondital.healthConditionString[healthCondition]);
         }
     }
 }
