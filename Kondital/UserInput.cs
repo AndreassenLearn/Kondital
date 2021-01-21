@@ -34,7 +34,7 @@ namespace Kondital
             char input;
             do
             {
-                if (Char.TryParse(Console.ReadLine(), out input) && validChars.Contains(input))
+                if (Char.TryParse(Console.ReadLine(), out input) && validChars == null || validChars.Contains(input))
                     break;
                 else
                     InvalidValue();
